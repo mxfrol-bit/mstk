@@ -436,6 +436,7 @@ document.addEventListener('DOMContentLoaded', () => {
   try { initFloatingCTA(); } catch(e) {}
   try { initBackToTop(); } catch(e) {}
   try { initCallbackWidget(); } catch(e) {}
+  try { initMobileMenu(); } catch(e) {}
 
   // Active nav highlight
   try {
@@ -618,7 +619,7 @@ function initMegaMenu() {
       wrap.setAttribute('aria-hidden', 'true');
       trigger.setAttribute('aria-expanded', 'false');
       if (arrow) arrow.style.transform = '';
-    }, 120);
+    }, 350);
   }
 
   // Hover on trigger
