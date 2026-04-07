@@ -50,6 +50,7 @@ function injectNav() {
   mega.className = 'mega-wrap';
   mega.id = 'megaWrap';
   mega.setAttribute('aria-hidden', 'true');
+  mega.style.display = 'none'; // inline style — always hidden until JS opens it
   mega.innerHTML = `
     <div class="mega-inner">
       <div class="mega-col">
@@ -291,6 +292,7 @@ function initTiltCards() {
 
 // ── Particles (desktop only, safe) ──
 function initParticles() {
+  if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) return;
   if (window.innerWidth < 769) return; // skip on mobile
   const hero = document.querySelector('.hero');
   if (!hero) return;
@@ -604,17 +606,17 @@ function initMegaMenu() {
 
   function open() {
     clearTimeout(closeTimer);
-    wrap.classList.add('open');
+    wrap.style.display = 'block';
+    wrap.setAttribute('aria-hidden', 'false');
     trigger.setAttribute('aria-expanded', 'true');
     if (arrow) arrow.style.transform = 'rotate(180deg)';
-    nav.style.boxShadow = 'none';
   }
   function close() {
     closeTimer = setTimeout(() => {
-      wrap.classList.remove('open');
+      wrap.style.display = 'none';
+      wrap.setAttribute('aria-hidden', 'true');
       trigger.setAttribute('aria-expanded', 'false');
       if (arrow) arrow.style.transform = '';
-      nav.style.boxShadow = '';
     }, 120);
   }
 
@@ -629,7 +631,7 @@ function initMegaMenu() {
   // Click toggle (for keyboard/touch)
   trigger.addEventListener('click', (e) => {
     e.preventDefault();
-    wrap.classList.contains('open') ? close() : open();
+    wrap.style.display === 'block' ? close() : open();
   });
 
   // Esc to close
