@@ -283,34 +283,39 @@ function initTiltCards() {
   });
 }
 
-// ── Particles ──
+// ── Particles (desktop only, safe) ──
 function initParticles() {
+  if (window.innerWidth < 769) return; // skip on mobile
   const hero = document.querySelector('.hero');
   if (!hero) return;
-  const canvas = document.createElement('canvas');
-  canvas.style.cssText = 'position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.45';
-  hero.style.position = hero.style.position || 'relative';
-  hero.appendChild(canvas);
-  const ctx = canvas.getContext('2d');
-  let W, H, pts;
-  const resize = () => { W = canvas.width = hero.offsetWidth; H = canvas.height = hero.offsetHeight; };
-  const init = () => { pts = Array.from({length:55}, () => ({ x:Math.random()*W, y:Math.random()*H, dx:(Math.random()-.5)*.5, dy:(Math.random()-.5)*.5, r:Math.random()*1.5+.5, a:Math.random()*.5+.2 })); };
-  function draw() {
-    ctx.clearRect(0,0,W,H);
-    pts.forEach(p => {
-      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle=`rgba(123,174,238,${p.a})`; ctx.fill();
-      p.x+=p.dx; p.y+=p.dy;
-      if(p.x<0||p.x>W) p.dx*=-1; if(p.y<0||p.y>H) p.dy*=-1;
-    });
-    for(let i=0;i<pts.length;i++) for(let j=i+1;j<pts.length;j++) {
-      const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y, d=Math.sqrt(dx*dx+dy*dy);
-      if(d<110) { ctx.beginPath(); ctx.strokeStyle=`rgba(123,174,238,${.15*(1-d/110)})`; ctx.lineWidth=.6; ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(pts[j].x,pts[j].y); ctx.stroke(); }
+  try {
+    const canvas = document.createElement('canvas');
+    canvas.style.cssText = 'position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.4';
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return; // canvas not supported
+    hero.style.position = 'relative';
+    hero.appendChild(canvas);
+    let W, H, pts;
+    const resize = () => { W = canvas.width = hero.offsetWidth; H = canvas.height = hero.offsetHeight; };
+    const init = () => { pts = Array.from({length:45}, () => ({ x:Math.random()*W, y:Math.random()*H, dx:(Math.random()-.5)*.4, dy:(Math.random()-.5)*.4, r:Math.random()*1.5+.5, a:Math.random()*.4+.2 })); };
+    function draw() {
+      if (!pts) return;
+      ctx.clearRect(0,0,W,H);
+      pts.forEach(p => {
+        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle=`rgba(123,174,238,${p.a})`; ctx.fill();
+        p.x+=p.dx; p.y+=p.dy;
+        if(p.x<0||p.x>W) p.dx*=-1; if(p.y<0||p.y>H) p.dy*=-1;
+      });
+      for(let i=0;i<pts.length;i++) for(let j=i+1;j<pts.length;j++) {
+        const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y, d=Math.sqrt(dx*dx+dy*dy);
+        if(d<100) { ctx.beginPath(); ctx.strokeStyle=`rgba(123,174,238,${.12*(1-d/100)})`; ctx.lineWidth=.5; ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(pts[j].x,pts[j].y); ctx.stroke(); }
+      }
+      requestAnimationFrame(draw);
     }
-    requestAnimationFrame(draw);
-  }
-  resize(); init(); draw();
-  window.addEventListener('resize', () => { resize(); init(); }, {passive:true});
+    resize(); init(); draw();
+    window.addEventListener('resize', () => { resize(); init(); }, {passive:true});
+  } catch(e) { /* canvas not available, skip silently */ }
 }
 
 // ── Parallax ──
@@ -403,17 +408,35 @@ window.handleSubmit = function(e) {
 
 // ── INIT ──
 document.addEventListener('DOMContentLoaded', () => {
-  injectTopbar(); injectNav(); injectMobileNav(); injectFooter(); injectFloatingWidgets();
-  injectStructuredData();
-  initProgressBar(); initScrollAnimations(); initCounters(); initTiltCards();
-  initParticles(); initParallax(); initTypewriter(); initLightbox();
-  initFloatingCTA(); initBackToTop(); initCallbackWidget();
-  // Active nav
-  document.querySelectorAll('.nav-links a').forEach(a=>{
-    if(location.pathname.endsWith(a.getAttribute('href')?.split('/').pop()||'')&&a.getAttribute('href')!=='#'){
-      a.style.cssText='color:var(--blue)!important;background:var(--sky)!important;';
-    }
-  });
+  // Critical — must always run
+  try { injectTopbar(); } catch(e) {}
+  try { injectNav(); } catch(e) {}
+  try { injectMobileNav(); } catch(e) {}
+  try { injectFooter(); } catch(e) {}
+  try { injectFloatingWidgets(); } catch(e) {}
+  try { injectStructuredData(); } catch(e) {}
+
+  // Enhancements — safe to fail individually
+  try { initProgressBar(); } catch(e) {}
+  try { initScrollAnimations(); } catch(e) {}
+  try { initCounters(); } catch(e) {}
+  try { if (window.innerWidth > 768) initTiltCards(); } catch(e) {}
+  try { initParticles(); } catch(e) {}
+  try { if (window.innerWidth > 768) initParallax(); } catch(e) {}
+  try { initTypewriter(); } catch(e) {}
+  try { initLightbox(); } catch(e) {}
+  try { initFloatingCTA(); } catch(e) {}
+  try { initBackToTop(); } catch(e) {}
+  try { initCallbackWidget(); } catch(e) {}
+
+  // Active nav highlight
+  try {
+    document.querySelectorAll('.nav-links a').forEach(a=>{
+      if(location.pathname.endsWith(a.getAttribute('href')?.split('/').pop()||'')&&a.getAttribute('href')!=='#'){
+        a.style.cssText='color:var(--blue)!important;background:var(--sky)!important;';
+      }
+    });
+  } catch(e) {}
 });
 
 // ══════════════════════════════════════════

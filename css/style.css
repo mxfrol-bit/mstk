@@ -562,3 +562,44 @@ footer { background: var(--navy); color: rgba(255,255,255,.6); padding: 4rem 0 2
 @media (min-width: 769px) {
   .swipe-hint { display: none; }
 }
+
+/* ══════════════════════════════════════════
+   CRITICAL MOBILE FIXES
+══════════════════════════════════════════ */
+
+/* Mobile: content always visible — no JS dependency */
+@media (max-width: 768px) {
+  .fade-up {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* Desktop: mega menu backdrop above content, below nav */
+nav { isolation: isolate; }
+
+/* Mega wrap — proper z-index stacking */
+.mega-wrap {
+  isolation: auto;
+}
+
+/* Close mega on mobile always */
+@media (max-width: 768px) {
+  .mega-wrap,
+  .mega-wrap.open {
+    display: none !important;
+    pointer-events: none !important;
+  }
+}
+
+/* Prevent mega menu link clicks feeling laggy */
+.mega-col ul a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Mobile nav — ensure it never blocks page */
+.mobile-nav:not(.open) {
+  display: none !important;
+  pointer-events: none !important;
+}
