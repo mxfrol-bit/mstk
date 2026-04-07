@@ -11,24 +11,24 @@ function injectTopbar() {
 
 function injectNav() {
   const r = ROOT;
+
+  // ── NAV (no mega-wrap inside!) ──
   const el = document.createElement('nav');
   el.innerHTML = `
   <div class="progress-bar" id="progressBar"></div>
   <div class="nav-inner">
-
     <a href="${r}index.html" class="logo">
       <div class="logo-img-wrap">
         <img src="https://mstk-med.com/mstk/LOGO.png"
              alt="МСТК — официальный дистрибьютор Bausch + Lomb"
              width="140" height="46"
-             onerror="this.outerHTML='<span style=\'font-family:var(--font-h);font-size:1.5rem;font-weight:700;color:var(--navy)\'>МСТК</span>'" />
+             onerror="this.outerHTML='<span style=\'font-family:serif;font-size:1.5rem;font-weight:700;color:#07142B\'>МСТК</span>'" />
       </div>
       <div class="logo-text">
         <strong>МСТК</strong>
         <small>Bausch + Lomb · Россия</small>
       </div>
     </a>
-
     <ul class="nav-links" role="navigation" aria-label="Главное меню">
       <li><a href="${r}about.html">О нас</a></li>
       <li class="nav-mega">
@@ -37,16 +37,20 @@ function injectNav() {
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="transition:transform .2s" id="megaArrow"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
         </a>
       </li>
-      <li><a href="${r}about.html#brands">Бренды</a></li>
       <li><a href="${r}contact.html" class="btn-nav">Связаться с нами</a></li>
     </ul>
-
     <div class="hamburger" id="hamburger" role="button" aria-label="Меню" tabindex="0">
       <span></span><span></span><span></span>
     </div>
-  </div>
+  </div>`;
+  document.body.insertBefore(el, document.body.children[1]);
 
-  <div class="mega-wrap" id="megaWrap" role="region" aria-label="Меню продукции">
+  // ── MEGA-WRAP injected separately, AFTER nav, as body-level element ──
+  const mega = document.createElement('div');
+  mega.className = 'mega-wrap';
+  mega.id = 'megaWrap';
+  mega.setAttribute('aria-hidden', 'true');
+  mega.innerHTML = `
     <div class="mega-inner">
       <div class="mega-col">
         <div class="mega-col-title">Интраокулярные линзы</div>
@@ -80,19 +84,20 @@ function injectNav() {
           <li><a href="${r}products/service.html">Ремонт Stellaris</a></li>
           <li><a href="${r}products/service.html">Оригинальные запчасти</a></li>
         </ul>
-        <div style="margin-top:1.5rem;background:var(--sky);border-radius:12px;padding:1rem 1.2rem;">
-          <div style="font-size:.78rem;font-weight:600;color:var(--navy);margin-bottom:.3rem;">Нужна консультация?</div>
-          <div style="font-size:.78rem;color:var(--muted);margin-bottom:.8rem;line-height:1.5;">Подберём оптимальное решение для вашей клиники</div>
-          <a href="${r}contact.html" style="display:inline-block;background:var(--blue);color:#fff;text-decoration:none;padding:.45rem 1rem;border-radius:8px;font-size:.78rem;font-weight:600;font-family:var(--font-b);">Связаться →</a>
+        <div style="margin-top:1.5rem;background:#E8F1FD;border-radius:12px;padding:1rem 1.2rem;">
+          <div style="font-size:.78rem;font-weight:600;color:#07142B;margin-bottom:.3rem;">Нужна консультация?</div>
+          <div style="font-size:.78rem;color:#6B7A96;margin-bottom:.8rem;line-height:1.5;">Подберём решение для вашей клиники</div>
+          <a href="${r}contact.html" style="display:inline-block;background:#1B5FC1;color:#fff;text-decoration:none;padding:.45rem 1rem;border-radius:8px;font-size:.78rem;font-weight:600;">Связаться →</a>
         </div>
       </div>
       <div class="mega-footer">
         <p>🏆 Официальный дистрибьютор Bausch + Lomb в России с 2006 года · 100+ клиник · 40 000+ ИОЛ в год</p>
         <a href="${r}products/index.html">Весь каталог →</a>
       </div>
-    </div>
-  </div>`;
-  document.body.insertBefore(el, document.body.children[1]);
+    </div>`;
+
+  // Insert mega right after the nav element
+  el.insertAdjacentElement('afterend', mega);
 }
 
 function injectMobileNav() {
@@ -271,6 +276,7 @@ function initCounters() {
 
 // ── 3D Tilt cards ──
 function initTiltCards() {
+  if (window.matchMedia('(hover: none)').matches) return; // skip on touch
   document.querySelectorAll('.product-card').forEach(card => {
     card.addEventListener('mousemove', e => {
       const r = card.getBoundingClientRect();
@@ -587,6 +593,7 @@ document.addEventListener('DOMContentLoaded', function mobileInit() {
 // MEGA MENU LOGIC
 // ══════════════════════════════════════════
 function initMegaMenu() {
+  if (window.innerWidth <= 768) return; // no mega on mobile
   const trigger = document.getElementById('megaTrigger');
   const wrap    = document.getElementById('megaWrap');
   const arrow   = document.getElementById('megaArrow');
