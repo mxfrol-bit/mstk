@@ -12,37 +12,85 @@ function injectTopbar() {
 function injectNav() {
   const r = ROOT;
   const el = document.createElement('nav');
-  el.innerHTML = `<div class="progress-bar" id="progressBar"></div>
+  el.innerHTML = `
+  <div class="progress-bar" id="progressBar"></div>
   <div class="nav-inner">
+
     <a href="${r}index.html" class="logo">
-      <img src="https://mstk-med.com/mstk/LOGO.png" alt="МСТК — дистрибьютор Bausch + Lomb" width="120" height="42"/>
-      <div class="logo-text"><strong>МСТК</strong><small>Bausch + Lomb Distributor</small></div>
+      <div class="logo-img-wrap">
+        <img src="https://mstk-med.com/mstk/LOGO.png"
+             alt="МСТК — официальный дистрибьютор Bausch + Lomb"
+             width="140" height="46"
+             onerror="this.outerHTML='<span style=\'font-family:var(--font-h);font-size:1.5rem;font-weight:700;color:var(--navy)\'>МСТК</span>'" />
+      </div>
+      <div class="logo-text">
+        <strong>МСТК</strong>
+        <small>Bausch + Lomb · Россия</small>
+      </div>
     </a>
-    <ul class="nav-links" role="navigation">
+
+    <ul class="nav-links" role="navigation" aria-label="Главное меню">
       <li><a href="${r}about.html">О нас</a></li>
-      <li>
-        <a href="${r}products/index.html">Продукция ▾</a>
-        <ul>
-          <li><a href="${r}products/iol.html">ИОЛ ▸</a>
-            <ul>
-              <li><a href="${r}products/envista.html">ENVISTA®</a></li>
-              <li><a href="${r}products/envista-toric.html">enVista™ Toric</a></li>
-              <li><a href="${r}products/luxgood.html">LuxGood™</a></li>
-              <li><a href="${r}products/luxgood-toric.html">LuxGood™ Toric</a></li>
-              <li><a href="${r}products/luxsmart.html">LuxSmart™</a></li>
-              <li><a href="${r}products/luxsmart-toric.html">LuxSmart™ Toric</a></li>
-              <li><a href="${r}products/akreos.html">Akreos® AO</a></li>
-            </ul>
-          </li>
-          <li><a href="${r}products/equipment.html">Оборудование (Stellaris)</a></li>
-          <li><a href="${r}products/surgery.html">Хирургия</a></li>
-          <li><a href="${r}products/silicone.html">Силиконовые масла и растворы</a></li>
-          <li><a href="${r}products/service.html">Обслуживание</a></li>
-        </ul>
+      <li class="nav-mega">
+        <a href="${r}products/index.html" id="megaTrigger" aria-haspopup="true" aria-expanded="false">
+          Продукция
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="transition:transform .2s" id="megaArrow"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </a>
       </li>
+      <li><a href="${r}about.html#brands">Бренды</a></li>
       <li><a href="${r}contact.html" class="btn-nav">Связаться с нами</a></li>
     </ul>
-    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+
+    <div class="hamburger" id="hamburger" role="button" aria-label="Меню" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <div class="mega-wrap" id="megaWrap" role="region" aria-label="Меню продукции">
+    <div class="mega-inner">
+      <div class="mega-col">
+        <div class="mega-col-title">Интраокулярные линзы</div>
+        <ul>
+          <li><a href="${r}products/envista.html">ENVISTA® <span class="tag">Моно</span></a></li>
+          <li><a href="${r}products/envista-toric.html">enVista™ Toric <span class="tag">Торик</span></a></li>
+          <li><a href="${r}products/luxgood.html">LuxGood™ <span class="tag">Preloaded</span></a></li>
+          <li><a href="${r}products/luxgood-toric.html">LuxGood™ Toric <span class="tag">Торик</span></a></li>
+          <li><a href="${r}products/luxsmart.html">LuxSmart™ <span class="tag">EDOF</span></a></li>
+          <li><a href="${r}products/luxsmart-toric.html">LuxSmart™ Toric <span class="tag">EDOF+</span></a></li>
+          <li><a href="${r}products/akreos.html">Akreos® AO <span class="tag">Гидро</span></a></li>
+        </ul>
+      </div>
+      <div class="mega-col">
+        <div class="mega-col-title">Оборудование</div>
+        <ul>
+          <li><a href="${r}products/equipment.html">Stellaris Elite™</a></li>
+          <li><a href="${r}products/surgery.html">Хирургические наборы</a></li>
+        </ul>
+        <div class="mega-col-title" style="margin-top:1.5rem">Материалы</div>
+        <ul>
+          <li><a href="${r}products/silicone.html">Силиконовые масла</a></li>
+          <li><a href="${r}products/silicone.html">EYEFILL® H.D.</a></li>
+          <li><a href="${r}products/silicone.html">БСС раствор</a></li>
+        </ul>
+      </div>
+      <div class="mega-col">
+        <div class="mega-col-title">Сервис</div>
+        <ul>
+          <li><a href="${r}products/service.html">Техническое обслуживание</a></li>
+          <li><a href="${r}products/service.html">Ремонт Stellaris</a></li>
+          <li><a href="${r}products/service.html">Оригинальные запчасти</a></li>
+        </ul>
+        <div style="margin-top:1.5rem;background:var(--sky);border-radius:12px;padding:1rem 1.2rem;">
+          <div style="font-size:.78rem;font-weight:600;color:var(--navy);margin-bottom:.3rem;">Нужна консультация?</div>
+          <div style="font-size:.78rem;color:var(--muted);margin-bottom:.8rem;line-height:1.5;">Подберём оптимальное решение для вашей клиники</div>
+          <a href="${r}contact.html" style="display:inline-block;background:var(--blue);color:#fff;text-decoration:none;padding:.45rem 1rem;border-radius:8px;font-size:.78rem;font-weight:600;font-family:var(--font-b);">Связаться →</a>
+        </div>
+      </div>
+      <div class="mega-footer">
+        <p>🏆 Официальный дистрибьютор Bausch + Lomb в России с 2006 года · 100+ клиник · 40 000+ ИОЛ в год</p>
+        <a href="${r}products/index.html">Весь каталог →</a>
+      </div>
+    </div>
   </div>`;
   document.body.insertBefore(el, document.body.children[1]);
 }
@@ -367,3 +415,202 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+// ══════════════════════════════════════════
+// BOTTOM NAVIGATION BAR (mobile)
+// ══════════════════════════════════════════
+function injectBottomNav() {
+  const r = ROOT;
+  const path = location.pathname;
+  const isHome     = path === '/' || path.endsWith('index.html') && !path.includes('/products/');
+  const isProducts = path.includes('/products/');
+  const isAbout    = path.includes('/about');
+  const isContact  = path.includes('/contact');
+
+  const nav = document.createElement('nav');
+  nav.className = 'bottom-nav';
+  nav.setAttribute('aria-label', 'Мобильная навигация');
+  nav.innerHTML = `<div class="bottom-nav-inner">
+    <a href="${r}index.html" class="bottom-nav-item ${isHome?'active':''}" aria-label="Главная">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Главная
+    </a>
+    <a href="${r}products/index.html" class="bottom-nav-item ${isProducts?'active':''}" aria-label="Продукция">
+      <svg viewBox="0 0 24 24"><rect x="2" y="3" width="7" height="7" rx="1"/><rect x="15" y="3" width="7" height="7" rx="1"/><rect x="2" y="14" width="7" height="7" rx="1"/><rect x="15" y="14" width="7" height="7" rx="1"/></svg>
+      Продукция
+    </a>
+    <a href="${r}about.html" class="bottom-nav-item ${isAbout?'active':''}" aria-label="О нас">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      О нас
+    </a>
+    <a href="${r}contact.html" class="bottom-nav-item bottom-nav-cta" aria-label="Контакты">
+      <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.77 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.37a16 16 0 0 0 5.72 5.72l1.56-1.56a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      Звонок
+    </a>
+  </div>`;
+  document.body.appendChild(nav);
+}
+
+// ══════════════════════════════════════════
+// TOUCH SWIPE for Lightbox
+// ══════════════════════════════════════════
+function initTouchSwipe() {
+  const ov = document.querySelector('.lightbox-overlay');
+  if (!ov) return;
+  let startX = 0;
+  ov.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive:true });
+  ov.addEventListener('touchend', e => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) document.getElementById('lbNext')?.click();
+      else document.getElementById('lbPrev')?.click();
+    }
+  });
+}
+
+// ══════════════════════════════════════════
+// SWIPE SCROLL HINT for product grids
+// ══════════════════════════════════════════
+function initSwipeCards() {
+  if (window.innerWidth > 768) return;
+  // Add swipe-scroll class to card grids with 3+ cards on catalog pages
+  const grids = document.querySelectorAll('.card-grid');
+  grids.forEach(grid => {
+    const cards = grid.querySelectorAll('.product-card');
+    if (cards.length >= 3) {
+      // Insert swipe hint before grid
+      const hint = document.createElement('div');
+      hint.className = 'swipe-hint';
+      hint.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg> Листайте вправо';
+      grid.parentNode.insertBefore(hint, grid);
+      grid.classList.add('swipe-scroll');
+    }
+  });
+}
+
+// ══════════════════════════════════════════
+// FOOTER ACCORDION on mobile
+// ══════════════════════════════════════════
+function initFooterAccordion() {
+  if (window.innerWidth > 768) return;
+  document.querySelectorAll('.footer-col').forEach(col => {
+    const h4 = col.querySelector('h4');
+    const ul = col.querySelector('ul, address');
+    if (!h4 || !ul) return;
+    ul.style.display = 'none';
+    h4.style.cursor = 'pointer';
+    h4.innerHTML += ' <span style="float:right;font-weight:300;font-size:1.1rem">+</span>';
+    h4.addEventListener('click', () => {
+      const open = ul.style.display !== 'none';
+      ul.style.display = open ? 'none' : '';
+      h4.querySelector('span').textContent = open ? '+' : '−';
+    });
+  });
+}
+
+// ══════════════════════════════════════════
+// VIEWPORT HEIGHT FIX (iOS Safari 100vh bug)
+// ══════════════════════════════════════════
+function fixVH() {
+  const setVH = () => document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+  setVH();
+  window.addEventListener('resize', setVH, { passive:true });
+}
+
+// ══════════════════════════════════════════
+// PULL TO REFRESH feel (visual only)
+// ══════════════════════════════════════════
+function initTouchFeedback() {
+  // Add active state ripple on touch for product cards
+  document.querySelectorAll('.product-card, .btn-primary, .btn-outline').forEach(el => {
+    el.addEventListener('touchstart', () => el.style.opacity = '.85', { passive:true });
+    el.addEventListener('touchend', () => el.style.opacity = '', { passive:true });
+    el.addEventListener('touchcancel', () => el.style.opacity = '', { passive:true });
+  });
+}
+
+// ══════════════════════════════════════════
+// STICKY PRODUCT HEADER (mobile product pages)
+// ══════════════════════════════════════════
+function initStickyProductTitle() {
+  if (window.innerWidth > 768) return;
+  const h1 = document.querySelector('.product-detail-content h1, .page-hero h1');
+  if (!h1) return;
+  const sticky = document.createElement('div');
+  sticky.style.cssText = 'position:fixed;top:58px;left:0;right:0;z-index:90;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);padding:.6rem 1.2rem;border-bottom:1px solid var(--border);font-family:var(--font-h);font-size:1rem;color:var(--navy);font-weight:600;transform:translateY(-100%);transition:transform .3s;box-shadow:0 2px 12px rgba(7,20,43,.07);display:flex;align-items:center;justify-content:space-between;gap:1rem;';
+  sticky.innerHTML = `<span>${h1.textContent.slice(0,40)}${h1.textContent.length>40?'…':''}</span><a href="${ROOT}contact.html" style="background:var(--blue);color:#fff;text-decoration:none;padding:.4rem .9rem;border-radius:100px;font-family:var(--font-b);font-size:.75rem;font-weight:600;white-space:nowrap;">Узнать цену</a>`;
+  document.body.appendChild(sticky);
+  const pageHero = document.querySelector('.page-hero');
+  if (!pageHero) return;
+  window.addEventListener('scroll', () => {
+    const heroBottom = pageHero.getBoundingClientRect().bottom;
+    sticky.style.transform = heroBottom < 60 ? 'translateY(0)' : 'translateY(-100%)';
+  }, { passive:true });
+}
+
+// Add bottom nav and mobile features to DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function mobileInit() {
+  injectBottomNav();
+  initTouchSwipe();
+  initSwipeCards();
+  initFooterAccordion();
+  fixVH();
+  // Slight delay for touch feedback (after cards are ready)
+  setTimeout(initTouchFeedback, 300);
+  setTimeout(initStickyProductTitle, 200);
+});
+
+// ══════════════════════════════════════════
+// MEGA MENU LOGIC
+// ══════════════════════════════════════════
+function initMegaMenu() {
+  const trigger = document.getElementById('megaTrigger');
+  const wrap    = document.getElementById('megaWrap');
+  const arrow   = document.getElementById('megaArrow');
+  const nav     = document.querySelector('nav');
+  if (!trigger || !wrap) return;
+
+  let closeTimer = null;
+
+  function open() {
+    clearTimeout(closeTimer);
+    wrap.classList.add('open');
+    trigger.setAttribute('aria-expanded', 'true');
+    if (arrow) arrow.style.transform = 'rotate(180deg)';
+    nav.style.boxShadow = 'none';
+  }
+  function close() {
+    closeTimer = setTimeout(() => {
+      wrap.classList.remove('open');
+      trigger.setAttribute('aria-expanded', 'false');
+      if (arrow) arrow.style.transform = '';
+      nav.style.boxShadow = '';
+    }, 120);
+  }
+
+  // Hover on trigger
+  trigger.parentElement.addEventListener('mouseenter', open);
+  trigger.parentElement.addEventListener('mouseleave', close);
+
+  // Hover on mega panel itself — keep open
+  wrap.addEventListener('mouseenter', () => clearTimeout(closeTimer));
+  wrap.addEventListener('mouseleave', close);
+
+  // Click toggle (for keyboard/touch)
+  trigger.addEventListener('click', (e) => {
+    e.preventDefault();
+    wrap.classList.contains('open') ? close() : open();
+  });
+
+  // Esc to close
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') close();
+  });
+
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    if (!nav.contains(e.target)) close();
+  });
+}
+
+document.addEventListener('DOMContentLoaded', initMegaMenu);
