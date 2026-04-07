@@ -218,3 +218,78 @@ footer { background: var(--navy); color: rgba(255,255,255,.6); padding: 4rem 0 2
   .topbar-inner { flex-direction: column; text-align: center; }
   section { padding: 3.5rem 0; }
 }
+
+/* ══════════════════════════════════════════
+   WOW FEATURES & SEO UI ENHANCEMENTS
+══════════════════════════════════════════ */
+
+/* ── Progress bar ── */
+.progress-bar { position: absolute; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--blue-l), #7BAEEE); width: 0%; transition: width .1s linear; z-index: 10; border-radius: 0 2px 2px 0; }
+
+/* ── Lightbox ── */
+.lightbox-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.92); z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .3s; }
+.lightbox-overlay.active { opacity: 1; pointer-events: all; }
+.lightbox-img { max-width: 90vw; max-height: 85vh; object-fit: contain; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,.5); user-select: none; }
+.lightbox-close { position: absolute; top: 1.5rem; right: 1.5rem; background: rgba(255,255,255,.15); border: none; color: #fff; font-size: 1.4rem; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; transition: background .2s; display: flex; align-items: center; justify-content: center; }
+.lightbox-close:hover { background: rgba(255,255,255,.3); }
+.lightbox-prev, .lightbox-next { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,.12); border: none; color: #fff; font-size: 2rem; width: 52px; height: 52px; border-radius: 50%; cursor: pointer; transition: background .2s; display: flex; align-items: center; justify-content: center; }
+.lightbox-prev { left: 1.5rem; }
+.lightbox-next { right: 1.5rem; }
+.lightbox-prev:hover, .lightbox-next:hover { background: rgba(255,255,255,.25); }
+
+/* ── Floating CTA ── */
+.floating-cta { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(20px); z-index: 150; display: flex; align-items: center; gap: 1rem; background: var(--navy); border: 1px solid rgba(255,255,255,.15); border-radius: 100px; padding: .8rem 1rem .8rem 1.5rem; box-shadow: 0 8px 32px rgba(7,20,43,.4); opacity: 0; pointer-events: none; transition: opacity .35s, transform .35s; white-space: nowrap; }
+.floating-cta.visible { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0); }
+.floating-cta span { color: rgba(255,255,255,.8); font-size: .85rem; }
+.floating-cta-btn { background: var(--blue); color: #fff; text-decoration: none; padding: .55rem 1.3rem; border-radius: 100px; font-size: .85rem; font-weight: 600; font-family: var(--font-b); transition: background .2s; }
+.floating-cta-btn:hover { background: var(--blue-l); }
+
+/* ── Back to top ── */
+.back-to-top { position: fixed; bottom: 6rem; right: 2rem; z-index: 150; width: 44px; height: 44px; border-radius: 50%; background: var(--navy2); color: #fff; border: 1px solid rgba(255,255,255,.2); font-size: 1.2rem; cursor: pointer; opacity: 0; transform: translateY(10px); transition: opacity .3s, transform .3s, background .2s; display: flex; align-items: center; justify-content: center; }
+.back-to-top.visible { opacity: 1; transform: translateY(0); }
+.back-to-top:hover { background: var(--blue); }
+
+/* ── Callback widget ── */
+.callback-widget { position: fixed; bottom: 2rem; left: 2rem; z-index: 150; }
+.callback-toggle { background: var(--blue); color: #fff; border: none; padding: .7rem 1.2rem; border-radius: 100px; font-size: .85rem; font-weight: 600; font-family: var(--font-b); cursor: pointer; display: flex; align-items: center; gap: .5rem; box-shadow: 0 4px 20px rgba(27,95,193,.4); transition: all .25s; }
+.callback-toggle:hover { background: var(--blue-l); transform: translateY(-2px); }
+.callback-form { position: absolute; bottom: calc(100% + .8rem); left: 0; background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 1.2rem; width: 260px; box-shadow: 0 12px 40px rgba(7,20,43,.15); display: none; flex-direction: column; gap: .8rem; }
+.callback-form.open { display: flex; }
+.callback-form-header { display: flex; justify-content: space-between; align-items: center; }
+.callback-form-header strong { font-size: .88rem; color: var(--navy); }
+.callback-form-header button { background: none; border: none; color: var(--muted); font-size: 1rem; cursor: pointer; }
+.callback-form input { border: 1.5px solid var(--border); border-radius: 8px; padding: .65rem .9rem; font-size: .9rem; font-family: var(--font-b); outline: none; width: 100%; transition: border-color .2s; }
+.callback-form input:focus { border-color: var(--blue); }
+.callback-submit { background: var(--blue); color: #fff; border: none; padding: .7rem; border-radius: 8px; font-size: .88rem; font-weight: 600; font-family: var(--font-b); cursor: pointer; transition: background .2s; }
+.callback-submit:hover { background: var(--blue-l); }
+
+/* ── Typewriter cursor ── */
+#typewriter::after { content: '|'; animation: blink .8s step-end infinite; color: #7BAEEE; }
+@keyframes blink { 0%,100%{opacity:1}50%{opacity:0} }
+
+/* ── Enhanced product card tilt (preserve existing hover) ── */
+.product-card { transition: transform .15s ease, box-shadow .15s ease, border-color .2s; will-change: transform; }
+
+/* ── Nav active highlight ── */
+.nav-links a.active { color: var(--blue) !important; background: var(--sky) !important; }
+
+/* ── Smooth image zoom-in cursor ── */
+.img-main img, .product-detail-imgs-row img { cursor: zoom-in; }
+
+/* ── Hero particles canvas stays behind content ── */
+.hero { position: relative; }
+.hero > *:not(canvas) { position: relative; z-index: 1; }
+
+/* ── Scroll reveal enhanced ── */
+.fade-up { transition: opacity .7s cubic-bezier(.25,.46,.45,.94), transform .7s cubic-bezier(.25,.46,.45,.94); }
+
+/* ── Stats counter highlight ── */
+[data-count] { display: inline-block; }
+
+/* ── Mobile: hide callback label on small screens ── */
+@media (max-width: 480px) {
+  .callback-toggle span { display: none; }
+  .callback-toggle { padding: .7rem; border-radius: 50%; width: 48px; height: 48px; justify-content: center; }
+  .floating-cta span { display: none; }
+  .lightbox-prev { left: .5rem; } .lightbox-next { right: .5rem; }
+}

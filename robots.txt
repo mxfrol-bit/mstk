@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mstk-production.up.railway.app/sitemap.xml
+
+# Block service files
+Disallow: /js/
+Disallow: /css/
