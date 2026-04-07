@@ -451,6 +451,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // BOTTOM NAVIGATION BAR (mobile)
 // ══════════════════════════════════════════
 function injectBottomNav() {
+  if (window.innerWidth > 768) return; // Desktop: don't inject at all
   const r = ROOT;
   const path = location.pathname;
   const isHome     = path === '/' || path.endsWith('index.html') && !path.includes('/products/');
