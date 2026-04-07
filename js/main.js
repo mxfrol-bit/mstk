@@ -609,6 +609,7 @@ function initMegaMenu() {
   function open() {
     clearTimeout(closeTimer);
     wrap.style.display = 'block';
+    wrap.style.pointerEvents = 'all';
     wrap.setAttribute('aria-hidden', 'false');
     trigger.setAttribute('aria-expanded', 'true');
     if (arrow) arrow.style.transform = 'rotate(180deg)';
@@ -616,6 +617,7 @@ function initMegaMenu() {
   function close() {
     closeTimer = setTimeout(() => {
       wrap.style.display = 'none';
+      wrap.style.pointerEvents = 'none';
       wrap.setAttribute('aria-hidden', 'true');
       trigger.setAttribute('aria-expanded', 'false');
       if (arrow) arrow.style.transform = '';
