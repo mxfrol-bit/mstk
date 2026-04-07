@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>МСТК — Официальный дистрибьютор Bausch + Lomb в России</title>
+  <meta name="description" content="ООО «Медицинские Современные Технологии и Консалтинг» — официальный дистрибьютор Bausch + Lomb. Интраокулярные линзы, офтальмологическое оборудование, сервис." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <style>
+    /* ── INDEX-ONLY STYLES ── */
+    .hero { background: linear-gradient(135deg, #07142B 0%, #0D2144 60%, #0F2D5A 100%); min-height: 88vh; display: flex; align-items: center; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%231B5FC1' fill-opacity='0.07'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+    .hero-inner { max-width: 1240px; margin: 0 auto; padding: 5rem 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; position: relative; z-index: 1; width: 100%; }
+    .hero-badge { display: inline-flex; align-items: center; gap: .6rem; background: rgba(27,95,193,.25); border: 1px solid rgba(27,95,193,.4); color: #7BAEEE; font-size: .75rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; padding: .4rem .9rem; border-radius: 100px; margin-bottom: 1.5rem; }
+    .hero-badge::before { content: ''; width: 6px; height: 6px; background: #7BAEEE; border-radius: 50%; }
+    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 3.6rem; font-weight: 600; color: #fff; line-height: 1.12; margin-bottom: 1.4rem; letter-spacing: -.01em; }
+    .hero h1 em { color: #7BAEEE; font-style: normal; }
+    .hero > .hero-inner > div > p { font-size: 1rem; color: rgba(255,255,255,.72); line-height: 1.75; max-width: 480px; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-visual { display: flex; flex-direction: column; gap: 1rem; align-items: flex-end; }
+    .hero-card { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); backdrop-filter: blur(12px); border-radius: 16px; padding: 1.5rem 2rem; width: 100%; max-width: 360px; }
+    .hero-card-label { font-size: .7rem; color: rgba(255,255,255,.5); letter-spacing: .1em; text-transform: uppercase; margin-bottom: .4rem; }
+    .hero-card-value { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; color: #fff; font-weight: 600; line-height: 1; }
+    .hero-card-sub { font-size: .8rem; color: rgba(255,255,255,.6); margin-top: .3rem; }
+    .hero-img { width: 100%; max-width: 360px; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,.12); }
+    .hero-img img { width: 100%; object-fit: cover; display: block; }
+    .stats { background: #fff; border-bottom: 1px solid #DDE3EF; }
+    .stats-inner { max-width: 1240px; margin: 0 auto; padding: 3rem 2rem; display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; }
+    .stat-item { text-align: center; }
+    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 700; color: #1B5FC1; line-height: 1; }
+    .stat-num sup { font-size: 1.5rem; vertical-align: super; }
+    .stat-label { font-size: .82rem; color: #6B7A96; margin-top: .5rem; line-height: 1.4; }
+    .products-header { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; margin-bottom: 3rem; flex-wrap: wrap; }
+    .about-list { list-style: none; margin: 1.8rem 0 2rem; display: flex; flex-direction: column; gap: .9rem; }
+    .about-list li { display: flex; gap: .8rem; align-items: flex-start; font-size: .9rem; line-height: 1.6; }
+    .about-list li::before { content: ''; flex-shrink: 0; width: 20px; height: 20px; margin-top: .1rem; border-radius: 50%; background: #E8F1FD url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l2 2 4-4' stroke='%231B5FC1' stroke-width='2' stroke-linecap='round' fill='none'/%3E%3C/svg%3E") no-repeat center; }
+    .brands-section { background: #07142B; }
+    .brands-section .section-title { color: #fff; }
+    .brands-section .section-sub { color: rgba(255,255,255,.6); }
+    .brands-section .section-tag { color: #7BAEEE; }
+    .brands-section .section-tag::before { background: #7BAEEE; }
+    @media (max-width:768px) {
+      .hero-inner { grid-template-columns: 1fr; padding: 3rem 1.5rem; }
+      .hero h1 { font-size: 2.4rem; }
+      .hero-visual { display: none; }
+      .stats-inner { grid-template-columns: repeat(2,1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">Официальный дистрибьютор Bausch + Lomb</div>
+      <h1>Только самые<br /><em>качественные материалы</em><br />для вашей клиники</h1>
+      <p>ООО «МСТК» основано в 2006 году. Мы поставляем офтальмологическое оборудование и расходные материалы Bausch&nbsp;+&nbsp;Lomb в более чем 100 клиник по всей России.</p>
+      <div class="hero-actions">
+        <a href="./products/index.html" class="btn-primary">Смотреть продукцию</a>
+        <a href="./contact.html" class="btn-ghost">Связаться с нами</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="hero-card-label">Ежегодные поставки</div>
+        <div class="hero-card-value">40 000<sup>+</sup></div>
+        <div class="hero-card-sub">интраокулярных линз в офтальмологические отделения РФ</div>
+      </div>
+      <div class="hero-img">
+        <img src="https://mstk-med.com/mstk/stellaris.png" alt="Stellaris Elite" style="background:#0a1628;height:220px;" />
+      </div>
+      <div style="display:flex;gap:1rem;width:100%;max-width:360px;">
+        <div class="hero-img" style="flex:1;"><img src="https://mstk-med.com/mstk/envistatoric.png" alt="enVista Toric" style="height:120px;background:#e8f1fd;" /></div>
+        <div class="hero-img" style="flex:1;"><img src="https://mstk-med.com/mstk/img/csm_eyefill-hd-1_2f54ab8173.png" alt="EYEFILL HD" style="height:120px;background:#e8f1fd;" /></div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-label">Установлено и обслуживается</div>
+        <div class="hero-card-value">103</div>
+        <div class="hero-card-sub">аппарата для катарактальной и витреоретинальной хирургии</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat-item fade-up"><div class="stat-num">18<sup>+</sup></div><div class="stat-label">лет непрерывной работы на рынке России</div></div>
+    <div class="stat-item fade-up"><div class="stat-num">100<sup>+</sup></div><div class="stat-label">государственных и частных клиник в базе</div></div>
+    <div class="stat-item fade-up"><div class="stat-num">103</div><div class="stat-label">хирургических аппарата на обслуживании</div></div>
+    <div class="stat-item fade-up"><div class="stat-num">40К<sup>+</sup></div><div class="stat-label">ИОЛ поставляется ежегодно в клиники РФ</div></div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="bg-grey">
+  <div class="section-inner">
+    <div class="products-header">
+      <div>
+        <div class="section-tag fade-up">Наша продукция</div>
+        <h2 class="section-title fade-up">Полный спектр решений<br>для офтальмологии</h2>
+      </div>
+      <p class="section-sub fade-up">Оборудование и расходные материалы ведущих мировых производителей для хирургии катаракты, витреоретинальных вмешательств и коррекции зрения.</p>
+    </div>
+    <div class="card-grid">
+      <a href="./products/equipment.html" class="product-card fade-up" style="grid-column:span 2;">
+        <div class="product-card-img" style="height:240px;background:#0a1628;">
+          <img src="https://mstk-med.com/mstk/img/stellaris-2-Photoroom.png" alt="Stellaris Elite" />
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-cat">Хирургическое оборудование</div>
+          <div class="product-card-title">Stellaris Elite™ — Комбинированная офтальмологическая система</div>
+          <div class="product-card-desc">Витрэктомия до 7500 cpm · Stable Chamber™ · Attune™ · Bi-Blade® · Передний и задний сегменты в одной системе.</div>
+          <span class="product-card-link">Подробнее</span>
+        </div>
+      </a>
+      <a href="./products/envista.html" class="product-card fade-up">
+        <div class="product-card-img" style="height:180px;"><img src="https://mstk-med.com/mstk/img/evistar.jpg" alt="ENVISTA" /></div>
+        <div class="product-card-body">
+          <div class="product-card-cat">ИОЛ</div>
+          <div class="product-card-title">ENVISTA® Интраокулярная линза</div>
+          <div class="product-card-desc">Гидрофобный акрил без глистенинга. AO-технология — ноль сферических аберраций. SureEdge™ 360°.</div>
+          <span class="product-card-link">Подробнее</span>
+        </div>
+      </a>
+      <a href="./products/luxgood.html" class="product-card fade-up">
+        <div class="product-card-img" style="height:180px;"><img src="https://mstk-med.com/mstk/img/LuxSmart.png" alt="LuxGood" /></div>
+        <div class="product-card-body">
+          <div class="product-card-cat">ИОЛ</div>
+          <div class="product-card-title">LuxGood™ Preloaded ИОЛ</div>
+          <div class="product-card-desc">Предустановленная безаберрационная линза. Разрез 2.2 мм. Инжектор Accuject™ Pro.</div>
+          <span class="product-card-link">Подробнее</span>
+        </div>
+      </a>
+      <a href="./products/luxgood-toric.html" class="product-card fade-up">
+        <div class="product-card-img" style="height:180px;"><img src="https://mstk-med.com/mstk/img/LuxSmart (1).png" alt="LuxGood Toric" /></div>
+        <div class="product-card-body">
+          <div class="product-card-cat">ИОЛ — Торическая</div>
+          <div class="product-card-title">LuxGood™ Toric</div>
+          <div class="product-card-desc">Торическая предзагруженная. Цилиндр 0.75–6.00D. Монолитная 4-точечная гаптика.</div>
+          <span class="product-card-link">Подробнее</span>
+        </div>
+      </a>
+      <a href="./products/silicone.html" class="product-card fade-up">
+        <div class="product-card-img" style="height:180px;"><img src="https://mstk-med.com/mstk/img/unnamed-Photoroom.png" alt="Силиконовые масла" /></div>
+        <div class="product-card-body">
+          <div class="product-card-cat">Витреоретинальные материалы</div>
+          <div class="product-card-title">Силиконовые масла и EYEFILL® H.D.</div>
+          <div class="product-card-desc">Материалы для стабилизации сетчатки и замещения стекловидного тела. БСС-раствор.</div>
+          <span class="product-card-link">Подробнее</span>
+        </div>
+      </a>
+      <a href="./products/service.html" class="product-card fade-up">
+        <div class="product-card-img" style="height:180px;"><img src="https://mstk-med.com/mstk/img/64be29c7157251d4d770313d_Medical-Equipment-Installation-Repair-and-Maintenance-copy-Photoroom.png" alt="Сервис" /></div>
+        <div class="product-card-body">
+          <div class="product-card-cat">Сервис</div>
+          <div class="product-card-title">Техническое обслуживание</div>
+          <div class="product-card-desc">Сертифицированные инженеры. Оригинальные запчасти. Все 103 аппарата работают надёжно более 10 лет.</div>
+          <span class="product-card-link">Подробнее</span>
+        </div>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem;" class="fade-up">
+      <a href="./products/index.html" class="btn-outline">Смотреть весь каталог</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section>
+  <div class="section-inner">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;" class="about-resp">
+      <div class="fade-up" style="position:relative;">
+        <div style="border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(7,20,43,.15);">
+          <img src="https://mstk-med.com/mstk/img/3523b63ef751bb0049c2f458265ee429.webp" alt="Офтальмологическая хирургия" style="width:100%;height:440px;object-fit:cover;" />
+        </div>
+        <div style="position:absolute;bottom:-1.5rem;right:-1.5rem;background:#1B5FC1;color:#fff;border-radius:14px;padding:1.2rem 1.8rem;text-align:center;box-shadow:0 8px 24px rgba(27,95,193,.4);">
+          <strong style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;display:block;line-height:1;">2006</strong>
+          <span style="font-size:.78rem;opacity:.85;">год основания</span>
+        </div>
+      </div>
+      <div class="fade-up">
+        <div class="section-tag">О компании</div>
+        <h2 class="section-title">Надёжный партнёр<br>для вашей клиники</h2>
+        <p style="color:#6B7A96;line-height:1.75;font-size:.92rem;margin-bottom:1rem;">
+          ООО «Медицинские Современные Технологии и Консалтинг» основано 20 октября 2006 года. 
+          Мы являемся официальным дистрибьютором Bausch&nbsp;+&nbsp;Lomb в России — одного из ведущих 
+          мировых производителей медицинских изделий для офтальмологии.
+        </p>
+        <p style="color:#6B7A96;line-height:1.75;font-size:.92rem;">
+          Мы рады сотрудничеству с новыми клиентами и очень дорожим доверием наших постоянных партнёров.
+        </p>
+        <ul class="about-list">
+          <li>Поставки в более чем 100 государственных и частных клиник РФ</li>
+          <li>Собственная высококвалифицированная сервисная служба</li>
+          <li>103 аппарата на установке и ежегодном обслуживании</li>
+          <li>Более 40 000 ИОЛ поставляется ежегодно</li>
+          <li>Особое внимание — ИОЛ с углублённым фокусом и торические коррекции</li>
+        </ul>
+        <a href="./about.html" class="btn-primary">Подробнее о нас</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<section class="brands-section">
+  <div class="section-inner" style="text-align:center;">
+    <div class="section-tag fade-up" style="justify-content:center;">Ключевой партнёр</div>
+    <h2 class="section-title fade-up">Официальный поставщик<br>Bausch + Lomb</h2>
+    <p class="section-sub fade-up" style="margin:0 auto 2.5rem;">Bausch&nbsp;+&nbsp;Lomb — американская компания, всемирно известный производитель контактных линз, офтальмологических хирургических препаратов и оборудования.</p>
+    <div style="display:flex;justify-content:center;" class="fade-up">
+      <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:2rem 4rem;text-align:center;">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:#fff;">Bausch + Lomb</div>
+        <div style="font-size:.8rem;color:rgba(255,255,255,.5);margin-top:.5rem;letter-spacing:.1em;text-transform:uppercase;">Official Distributor — Russia</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT CTA -->
+<section>
+  <div class="section-inner" style="text-align:center;">
+    <div class="section-tag fade-up" style="justify-content:center;">Контакты</div>
+    <h2 class="section-title fade-up">Готовы к сотрудничеству?</h2>
+    <p class="section-sub fade-up" style="margin:0 auto 2rem;">Оставьте заявку или свяжитесь с нами удобным способом — ответим в течение рабочего дня.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;" class="fade-up">
+      <a href="./contact.html" class="btn-primary">Оставить заявку</a>
+      <a href="tel:+78314281054" class="btn-outline">+7 (831) 428-10-54</a>
+    </div>
+  </div>
+</section>
+
+<script src="./js/main.js"></script>
+<style>@media(max-width:768px){.about-resp{grid-template-columns:1fr!important;}}</style>
+</body>
+</html>
