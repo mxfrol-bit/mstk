@@ -50,18 +50,37 @@
 img[src$="luxgood-toric-object-v3.webp"]{transform:rotate(22deg)}.catalog-card:hover img[src$="luxgood-toric-object-v3.webp"]{transform:translateY(-3px) rotate(20deg)}
 @media(max-width:430px){.equipment-feature>img{padding:0}}
 
-/* Live optical sculpture, with static artwork while WebGL initializes. */
-.hero-art[data-optical-scene]{width:64%;background:#e5ebf7}
-.hero-art canvas{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity .7s ease;cursor:grab;touch-action:pan-y;outline-offset:-8px}
-.hero-art canvas:focus-visible{outline:2px solid var(--blue)}
-.hero-art canvas.is-dragging{cursor:grabbing}
+/* Animate the original blue optical artwork, keeping its composition. */
+.hero-art[data-artwork-motion]{width:75%;background:#e5ebf7;overflow:hidden}
+.hero-art canvas{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity .9s cubic-bezier(.16,1,.3,1);pointer-events:none}
 .hero-art.is-ready canvas{opacity:1}
 .hero-art.is-ready .hero-fallback{animation:none;opacity:0;pointer-events:none}
 .hero-content{pointer-events:none}.hero-content>*{pointer-events:auto}
 .motion-toggle{position:absolute;z-index:4;right:3.5%;bottom:75px;display:inline-flex;align-items:center;justify-content:center;min-width:110px;min-height:42px;padding:9px 16px;border:1px solid #bac7dd;border-radius:24px;background:#f6f8fcbf;color:#425573;font-size:12px;backdrop-filter:blur(10px)}
 .motion-toggle[hidden]{display:none}.motion-toggle:hover{background:#fff;border-color:#8298bb}
 @media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
- .catalog-card{transform:perspective(800px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg));transition:transform .25s ease-out,border-color .25s,box-shadow .25s}
+ .catalog-card{transform:perspective(800px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg));transition:transform .25s cubic-bezier(.16,1,.3,1),border-color .25s,box-shadow .25s}
 }
-@media(max-width:800px){.hero-art[data-optical-scene]{width:100%;height:425px}.motion-toggle{right:6%;bottom:62px;min-height:40px}.hero-content{padding-bottom:390px}}
-@media(prefers-reduced-motion:reduce){.hero-art canvas{cursor:default}.catalog-card{transform:none}.catalog-card:hover img[src$="luxgood-toric-object-v3.webp"]{transform:rotate(22deg)}}
+@media(max-width:800px){.hero-art[data-artwork-motion]{width:100%;height:425px}.motion-toggle{right:6%;bottom:62px;min-height:40px}}
+@media(prefers-reduced-motion:reduce){.catalog-card{transform:none}.catalog-card:hover img[src$="luxgood-toric-object-v3.webp"]{transform:rotate(22deg)}}
+/* One motion language across the original photographs and product images. */
+.artwork-motion{position:relative;overflow:hidden}
+.artwork-motion canvas{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity 1s cubic-bezier(.16,1,.3,1);pointer-events:none}
+.artwork-motion.is-ready canvas{opacity:1}
+.artwork-motion.is-ready>img{animation:none;opacity:0;pointer-events:none}
+.artwork-motion>img{transition:opacity .8s cubic-bezier(.16,1,.3,1)}
+.about-feature>.about-picture{padding:0;min-height:500px}
+.about-picture>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.picture-motion-toggle{top:20px;bottom:auto;right:20px;color:#fff;background:#17274480;border-color:#ffffff50;min-width:96px;z-index:4}
+.picture-motion-toggle:hover{color:var(--ink);background:#fff}
+.surgery-visual>span{z-index:2}
+img.motion-image{--image-base:0deg;transform:perspective(850px) rotateX(var(--image-rx,0deg)) rotateY(var(--image-ry,0deg)) rotateZ(var(--image-base));transition:transform .75s cubic-bezier(.16,1,.3,1),scale .75s cubic-bezier(.16,1,.3,1)}
+img.motion-image[src$="luxgood-toric-object-v3.webp"]{--image-base:22deg}
+.catalog-card:hover img.motion-image,.solution-card:hover>img.motion-image{transform:perspective(850px) rotateX(var(--image-rx,0deg)) rotateY(var(--image-ry,0deg)) rotateZ(var(--image-base))}
+.motion-image.image-engaged{scale:1.035}
+.image-glint{isolation:isolate}
+.image-glint::after{content:'';position:absolute;inset:-15%;z-index:1;pointer-events:none;background:linear-gradient(110deg,transparent 36%,#ffffff00 41%,#ffffff50 48%,#ffffff0a 55%,transparent 64%);transform:translateX(-125%);opacity:0}
+.image-glint-enter::after{animation:image-light-pass 1.7s cubic-bezier(.16,1,.3,1) .2s both}
+@keyframes image-light-pass{0%{transform:translateX(-125%);opacity:0}20%{opacity:.8}100%{transform:translateX(125%);opacity:0}}
+@media(max-width:800px){.about-feature>.about-picture{min-height:350px;height:350px}.picture-motion-toggle{top:16px;right:16px}}
+@media(prefers-reduced-motion:reduce){.motion-image,.catalog-card:hover img.motion-image,.solution-card:hover>img.motion-image{transform:rotate(var(--image-base))!important;scale:1!important}.image-glint::after{display:none}}
