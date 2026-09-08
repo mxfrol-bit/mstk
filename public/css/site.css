@@ -52,9 +52,6 @@ img[src$="luxgood-toric-object-v3.webp"]{transform:rotate(22deg)}.catalog-card:h
 
 /* Animate the original blue optical artwork, keeping its composition. */
 .hero-art[data-artwork-motion]{width:75%;background:#e5ebf7;overflow:hidden}
-.hero-art canvas{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity .9s cubic-bezier(.16,1,.3,1);pointer-events:none}
-.hero-art.is-ready canvas{opacity:1}
-.hero-art.is-ready .hero-fallback{animation:none;opacity:0;pointer-events:none}
 .hero-content{pointer-events:none}.hero-content>*{pointer-events:auto}
 .motion-toggle{position:absolute;z-index:4;right:3.5%;bottom:75px;display:inline-flex;align-items:center;justify-content:center;min-width:110px;min-height:42px;padding:9px 16px;border:1px solid #bac7dd;border-radius:24px;background:#f6f8fcbf;color:#425573;font-size:12px;backdrop-filter:blur(10px)}
 .motion-toggle[hidden]{display:none}.motion-toggle:hover{background:#fff;border-color:#8298bb}
@@ -63,10 +60,6 @@ img[src$="luxgood-toric-object-v3.webp"]{transform:rotate(22deg)}.catalog-card:h
 @media(prefers-reduced-motion:reduce){.catalog-card{transform:none}.catalog-card:hover img[src$="luxgood-toric-object-v3.webp"]{transform:rotate(22deg)}}
 /* One motion language across the original photographs and product images. */
 .artwork-motion{overflow:hidden}
-.artwork-motion canvas{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity 1s cubic-bezier(.16,1,.3,1);pointer-events:none}
-.artwork-motion.is-ready canvas{opacity:1}
-.artwork-motion.is-ready>img{animation:none;opacity:0;pointer-events:none}
-.artwork-motion>img{transition:opacity .8s cubic-bezier(.16,1,.3,1)}
 .about-feature>.about-picture{position:relative;padding:0;min-height:500px}
 .about-picture>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .picture-motion-toggle{top:20px;bottom:auto;right:20px;color:#fff;background:#17274480;border-color:#ffffff50;min-width:96px;z-index:4}
@@ -84,3 +77,10 @@ img.motion-image[src$="luxgood-toric-object-v3.webp"]{--image-base:22deg}
 @keyframes image-light-pass{0%{transform:translateX(-125%);opacity:0}20%{opacity:.8}100%{transform:translateX(125%);opacity:0}}
 @media(max-width:800px){.about-feature>.about-picture{min-height:350px;height:350px}.picture-motion-toggle{top:16px;right:16px}}
 @media(prefers-reduced-motion:reduce){.motion-image,.catalog-card:hover img.motion-image,.solution-card:hover>img.motion-image{transform:rotate(var(--image-base))!important;scale:1!important}.image-glint::after{display:none}}
+
+/* Visible native motion affects only the picture, never its layout container. */
+.artwork-motion.has-native-motion>img{animation:none;transform-origin:50% 50%;backface-visibility:hidden}
+.artwork-motion.is-playing>img,.artwork-motion.is-playing>.artwork-light{will-change:transform,opacity}
+.artwork-motion>.artwork-light{position:absolute;inset:-20%;display:block;pointer-events:none;z-index:1;margin:0;background:linear-gradient(115deg,transparent 25%,#fff0 35%,#e5f7ffb3 48%,#ffffff26 58%,transparent 72%);mix-blend-mode:screen;opacity:0}
+.artwork-motion[data-artwork-motion="iris"]>.artwork-light{background:radial-gradient(ellipse at 58% 27%,#d9faff 0%,#addefb80 24%,transparent 55%);mask-image:radial-gradient(ellipse at center,transparent 0%,transparent 17%,#000 34%,#000 72%,transparent 95%)}
+@media(prefers-reduced-motion:reduce){.artwork-motion.has-native-motion:not(.motion-user-enabled)>img{transform:none!important}.artwork-motion:not(.motion-user-enabled)>.artwork-light{display:none}}
