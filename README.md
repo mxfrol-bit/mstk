@@ -1,60 +1,18 @@
-# МСТК — Сайт (Static)
+# МСТК — Технологии ясного зрения
 
-Полностью статический сайт без Joomla/Modex. Деплой через GitHub + Vercel/Netlify за 2 минуты.
+Сайт: https://mstk-production.up.railway.app/
 
-## Структура
+Railway публикует ветку main этого репозитория. Railpack обслуживает только каталог public; его расположение задано в Staticfile.
 
-```
-mstk-site/
-├── index.html        ← весь сайт в одном файле
-└── README.md
-```
+## Обновление
 
-## Деплой через Vercel (рекомендуется)
+1. Установить зависимости: python3 -m pip install -r site-source/requirements.txt
+2. Изменить шаблоны site-source/build.py, стили или изображения в site-source.
+3. Собрать страницы: python3 site-source/build.py
+4. Проверить результат, закоммитить исходники и public, отправить изменения в main.
 
-1. **Загрузите на GitHub:**
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial MSTK site"
-   git remote add origin https://github.com/ВАШ_ЛОГИН/mstk-site.git
-   git push -u origin main
-   ```
+Сборка содержит 15 основных страниц и 404. Старые адреса /envista.html и /products/iol.html перенаправляют к актуальным страницам. Данные продукции извлекаются из site-source/source-content.
 
-2. **Подключите Vercel:**
-   - Зайдите на [vercel.com](https://vercel.com)
-   - Import Project → выберите репо `mstk-site`
-   - Framework: **Other** (просто статика)
-   - Deploy → готово!
+Все девять изображений товаров заменены на индивидуальные предметные AI-визуализации по изображениям производителя. Источники перечислены в site-source/assets/product-images.json. Мелкие надписи не являются точной репродукцией оригинала.
 
-3. **Свой домен:**  
-   В Vercel → Domains → добавьте `mstk-med.com`  
-   Обновите DNS у регистратора: CNAME → `cname.vercel-dns.com`
-
-## Деплой через Netlify
-
-1. Перетащите папку `mstk-site` на [app.netlify.com/drop](https://app.netlify.com/drop)  
-2. Получите URL вида `random-name.netlify.app` мгновенно.
-3. Настройте домен в Site Settings → Domain Management.
-
-## Что нужно заменить/настроить
-
-- **Форма контакта:** сейчас показывает уведомление но не отправляет данные.  
-  Варианты подключения:
-  - [Formspree](https://formspree.io) — добавьте `action="https://formspree.io/f/XXXX"` к форме
-  - [EmailJS](https://emailjs.com) — 200 писем/месяц бесплатно
-  - Свой backend на FastAPI/Railway
-
-- **Карта Google Maps:** обновите embed-ссылку с точными координатами офиса
-
-- **Изображения:** при желании замените ссылки на локальные файлы в папке `/img`
-
-- **Логотип:** если `LOGO.png` будет недоступен на старом домене — положите в папку `/img/logo.png` и обновите `src`
-
-## Технологии
-
-- Чистый HTML5 / CSS3 / Vanilla JS
-- Шрифты: Google Fonts (Cormorant Garamond + IBM Plex Sans)
-- Нет фреймворков, нет зависимостей
-- Responsive: адаптивный для мобильных
-- Animations: CSS + Intersection Observer
+Форма подготавливает письмо на mstknn@gmail.com; посетитель отправляет его из своего почтового приложения.
