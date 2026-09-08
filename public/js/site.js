@@ -15,3 +15,20 @@ if(contactForm){
  contactForm.querySelector('.form-status').textContent='Письмо подготовлено. Отправьте его в почтовом приложении. Если оно не открылось, напишите на mstknn@gmail.com или позвоните нам.';
  });
 }
+
+// A restrained depth response keeps the compact catalog readable.
+const tiltEnabled=matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
+document.querySelectorAll('.catalog-card').forEach(card=>{
+ let bounds=null,frame=0,x=0,y=0;
+ const reset=()=>{cancelAnimationFrame(frame);frame=0;bounds=null;card.style.removeProperty('--tilt-x');card.style.removeProperty('--tilt-y');};
+ card.addEventListener('pointerenter',()=>{if(tiltEnabled.matches)bounds=card.getBoundingClientRect();});
+ card.addEventListener('pointermove',event=>{
+  if(!tiltEnabled.matches||!bounds)return;
+  x=Math.max(-1,Math.min(1,(event.clientX-bounds.left)/bounds.width*2-1));
+  y=Math.max(-1,Math.min(1,(event.clientY-bounds.top)/bounds.height*2-1));
+  if(!frame)frame=requestAnimationFrame(()=>{card.style.setProperty('--tilt-x',`${-y*2}deg`);card.style.setProperty('--tilt-y',`${x*2.5}deg`);frame=0;});
+ },{passive:true});
+ card.addEventListener('pointerleave',reset);
+ card.addEventListener('pointercancel',reset);
+ tiltEnabled.addEventListener('change',reset);
+});
