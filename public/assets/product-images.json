@@ -1,74 +1,76 @@
 {
   "envista": {
-    "asset": "/assets/products/envista-studio-v2.webp",
-    "type": "AI studio visualization based on manufacturer product image",
+    "asset": "/assets/products/envista-object-v3.webp",
+    "type": "AI-generated 3D product visualization with a new camera pose",
     "reference_url": "https://www.bauschsurgical.eu/fileadmin/_processed_/9/b/csm_envista_0ac6119888.jpg",
-    "width": 1254,
-    "height": 1254,
-    "sha256": "8be9367ac2bacab75ca717b64b03702dde632b34889421badb1e39d9f299b70f"
+    "width": 960,
+    "height": 960,
+    "sha256": "0cf76e0aa6b6979ffd9d49f162f3401b3bda2295a83b2e6162fdd56e3464e518"
   },
   "envista-toric": {
-    "asset": "/assets/products/envista-toric-studio-v2.webp",
-    "type": "AI studio visualization based on manufacturer product image",
+    "asset": "/assets/products/envista-toric-object-v3.webp",
+    "type": "AI-generated 3D product visualization with a new camera pose",
     "reference_url": "https://www.bauschsurgical.eu/fileadmin/_processed_/2/8/csm_envista-toric_fc1affb7c7.jpg",
-    "width": 1254,
-    "height": 1254,
-    "sha256": "9d05787c1836413ee80e0befb3d3ebd8e1fcb38274658d4044addfe4cd4d7df2"
+    "width": 960,
+    "height": 960,
+    "sha256": "8f91b57963a4baca3dfc0155b7a83cbe1f9a76f368eb41ad1876c8f10aa83c7b"
   },
   "luxgood": {
-    "asset": "/assets/products/luxgood-studio-v2.webp",
-    "type": "AI studio visualization based on manufacturer product image",
+    "asset": "/assets/products/luxgood-object-v3.webp",
+    "type": "AI-generated 3D product visualization with a new camera pose",
     "reference_url": "https://bauschsurgical.eu/fileadmin/_processed_/f/9/csm_LuxSmart_3445fa179c.png",
-    "width": 1254,
-    "height": 1254,
-    "sha256": "bc451eed2027e290d547f07842047093a8b50d68ff60cefc0f8acd7e41ff8010"
+    "width": 960,
+    "height": 960,
+    "sha256": "f87dba11fc578da85b11a50b4944755110db742dd15a8070133ab83fe7169e91"
   },
   "luxgood-toric": {
-    "asset": "/assets/products/luxgood-toric-studio-v2.webp",
-    "type": "AI studio visualization based on manufacturer product image",
-    "reference_url": "https://bausch.ru/upload/iblock/0a4/4n1jujusxh1s7exatoc4o9sgtt7s5h70.webp",
-    "width": 1254,
-    "height": 1254,
-    "sha256": "3e8861b0dc355a08b359710e7f99f5b76c7dbad18dab8fac0a039702780651e2"
+    "asset": "/assets/products/luxgood-toric-object-v3.webp",
+    "type": "generic Lux-platform toric 3D illustration",
+    "reference_url": "https://bauschsurgical.eu/fileadmin/_processed_/f/9/csm_LuxSmart_3445fa179c.png",
+    "width": 960,
+    "height": 960,
+    "sha256": "7607feaacb795d17dc63d670a708cb294d65c3678b72ffbbbd79ba6036709966",
+    "product_reference_url": "https://bausch.ru/products/khirurgicheskoe-oborudovanie/luxgood-toric/"
   },
   "luxsmart": {
-    "asset": "/assets/products/luxsmart-studio-v2.webp",
-    "type": "AI studio visualization based on manufacturer product image",
+    "asset": "/assets/products/luxsmart-object-v3.webp",
+    "type": "AI-generated 3D product visualization with a new camera pose",
     "reference_url": "https://www.luxsmartiol.com/wp-content/uploads/2021/09/LuxSmart%E2%84%A2-violet-filter-lens.png",
-    "width": 1254,
-    "height": 1254,
-    "sha256": "9b004b40cf5786119c2635dd7c96d1593c510e8d4642726e7a39c259122aa4a4"
+    "width": 960,
+    "height": 960,
+    "sha256": "ff33c3a3e234e2109630cd6e533eae52edc7dec41eea21b95ada69648d50f6ee"
   },
   "luxsmart-toric": {
-    "asset": "/assets/products/luxsmart-toric-studio-v2.webp",
-    "type": "AI studio visualization based on manufacturer product image",
+    "asset": "/assets/products/luxsmart-toric-object-v3.webp",
+    "type": "AI-generated 3D product visualization with a new camera pose",
     "reference_url": "https://www.bauschsurgical.eu/fileadmin/_processed_/3/3/csm_LuxSmart_toric_fe9711ab90.png",
-    "width": 1254,
-    "height": 1254,
-    "sha256": "7950013778edfcea536ad8a4ab075c33cef4a7865fc3e0f29134592baf496a1a"
+    "width": 960,
+    "height": 960,
+    "sha256": "036915f8b8a2653ae7ca1442151c88580a3743b2de6607351e4583f96bef5ecf"
   },
   "akreos": {
-    "asset": "/assets/products/akreos-studio-v2.webp",
-    "type": "AI studio visualization based on manufacturer product image",
+    "asset": "/assets/products/akreos-object-v3.webp",
+    "type": "AI-generated 3D product visualization with a new camera pose",
     "reference_url": "https://www.bauschsurgical.eu/fileadmin/_processed_/e/e/csm_aekros-ao_f426e2ab71.jpg",
-    "width": 1254,
-    "height": 1254,
-    "sha256": "73f061e9f5af3ae0bae3ec7c0abd78469cb3eec95e33be49bd79683780e1ce25"
+    "width": 960,
+    "height": 960,
+    "sha256": "b2a44dc44f78c48af91fdfbdfb279776434fd0d5cd9dc45ec881bedd23045eae"
   },
   "stellaris": {
-    "asset": "/assets/products/stellaris-studio-v2.webp",
-    "type": "AI studio visualization based on manufacturer product image",
+    "asset": "/assets/products/stellaris-object-v3.webp",
+    "type": "AI-generated 3D product visualization with a new camera pose",
     "reference_url": "https://www.bauschsurgical.com/siteassets/img/catract/6d13799738a74bb6d09568d56a527d7d.png",
-    "width": 1254,
-    "height": 1254,
-    "sha256": "367d0eb7f39aa834ed6f64bb77e5a71243db88f84a0714c25d37719ffdafcff2"
+    "width": 960,
+    "height": 960,
+    "sha256": "f23c2001f084c5d6fe455c9c68b28aa1ac1f27c1c10460b4fbfe9b253d643d83",
+    "note": "Three-quarter illustration; side geometry inferred from manufacturer front view."
   },
   "eyefill": {
-    "asset": "/assets/products/eyefill-studio-v2.webp",
-    "type": "AI studio visualization based on manufacturer product image",
-    "reference_url": "https://www.bauschsurgical.eu/fileadmin/_processed_/f/0/csm_eyefill-hd-1_e3dcd2fa3c.png",
-    "width": 1254,
-    "height": 1254,
-    "sha256": "d67230a57a1f8b54e5b5c5a60133500f76ba212c799d02e9f598f67a79f2cb3b"
+    "asset": "/assets/products/eyefill-object-v3.webp",
+    "type": "conceptual 3D illustration of viscoelastic material",
+    "reference_url": null,
+    "width": 960,
+    "height": 960,
+    "sha256": "257d366156419b424fe2f4b230aa0288aed054a0f5b886ce791cd0fdadee2d39"
   }
 }
