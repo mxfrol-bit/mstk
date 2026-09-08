@@ -1,5 +1,5 @@
 import * as THREE from './vendor/three.module.min.js';
-import {artworkMotion,irisMotion,coverScale,artworkVertexShader,artworkFragmentShader,irisFragmentShader} from './artwork-motion.js';
+import {artworkMotion,irisMotion,coverScale,artworkVertexShader,artworkFragmentShader,irisFragmentShader} from './artwork-motion.js?v=6';
 
 function initializeArtwork(host) {
   const hero=host.closest('.home-hero')||host;

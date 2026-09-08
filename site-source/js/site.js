@@ -16,26 +16,8 @@ if(contactForm){
  });
 }
 
-// A restrained depth response keeps the compact catalog readable.
-const tiltEnabled=matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
-document.querySelectorAll('.catalog-card').forEach(card=>{
- let bounds=null,frame=0,x=0,y=0;
- const reset=()=>{cancelAnimationFrame(frame);frame=0;bounds=null;card.style.removeProperty('--tilt-x');card.style.removeProperty('--tilt-y');};
- card.addEventListener('pointerenter',()=>{if(tiltEnabled.matches)bounds=card.getBoundingClientRect();});
- card.addEventListener('pointermove',event=>{
-  if(!tiltEnabled.matches||!bounds)return;
-  x=Math.max(-1,Math.min(1,(event.clientX-bounds.left)/bounds.width*2-1));
-  y=Math.max(-1,Math.min(1,(event.clientY-bounds.top)/bounds.height*2-1));
-  if(!frame)frame=requestAnimationFrame(()=>{card.style.setProperty('--tilt-x',`${-y*2}deg`);card.style.setProperty('--tilt-y',`${x*2.5}deg`);frame=0;});
- },{passive:true});
- card.addEventListener('pointerleave',reset);
- card.addEventListener('pointercancel',reset);
- tiltEnabled.addEventListener('change',reset);
-});
-
-// Each product image appears with a short reveal, then follows deliberate input.
+// Fade and light reveal preserve each product image position and shape.
 const imageMotionAllowed=matchMedia('(prefers-reduced-motion: no-preference)');
-const fineImagePointer=matchMedia('(hover: hover) and (pointer: fine)');
 const imageAnimations=new Set();
 const imageReveal=new IntersectionObserver(entries=>{
  for(const entry of entries){
@@ -45,29 +27,12 @@ const imageReveal=new IntersectionObserver(entries=>{
   const isDetail=!!img.closest('.product-photo');
   const animation=img.animate(isDetail?
    [{opacity:.3,clipPath:'inset(0 8% 0 8% round 14px)'},{opacity:1,clipPath:'inset(0 0 0 0 round 14px)'}]:
-   [{opacity:.3,scale:'.91',translate:'0 12px'},{opacity:1,scale:'1',translate:'0 0'}],
+   [{opacity:.3},{opacity:1}],
    {duration:isDetail?1200:950,easing:'cubic-bezier(.16,1,.3,1)'});
   imageAnimations.add(animation);animation.finished.then(()=>imageAnimations.delete(animation),()=>imageAnimations.delete(animation));
   const surface=img.closest('.catalog-image,.product-photo');
   if(surface)surface.classList.add('image-glint','image-glint-enter');
  }
 },{threshold:.18});
-document.querySelectorAll('[data-image-motion]').forEach(img=>{
- imageReveal.observe(img);
- const surface=img.closest('.catalog-card,.solution-card,.product-photo,.equipment-feature,.service-device,.material-figure')||img;
- let box=null,raf=0,x=0,y=0;
- const reset=()=>{cancelAnimationFrame(raf);raf=0;box=null;img.style.removeProperty('--image-rx');img.style.removeProperty('--image-ry');img.classList.remove('image-engaged');};
- surface.addEventListener('pointerenter',()=>{
-  if(!imageMotionAllowed.matches||!fineImagePointer.matches)return;
-  box=surface.getBoundingClientRect();img.classList.add('image-engaged');
- });
- surface.addEventListener('pointermove',e=>{
-  if(!box||!imageMotionAllowed.matches)return;
-  x=Math.max(-1,Math.min(1,(e.clientX-box.left)/box.width*2-1));
-  y=Math.max(-1,Math.min(1,(e.clientY-box.top)/box.height*2-1));
-  if(!raf)raf=requestAnimationFrame(()=>{img.style.setProperty('--image-rx',`${-y*4}deg`);img.style.setProperty('--image-ry',`${x*5}deg`);raf=0;});
- },{passive:true});
- surface.addEventListener('pointerleave',reset);surface.addEventListener('pointercancel',reset);
- imageMotionAllowed.addEventListener('change',reset);fineImagePointer.addEventListener('change',reset);
-});
+document.querySelectorAll('[data-image-motion]').forEach(img=>imageReveal.observe(img));
 imageMotionAllowed.addEventListener('change',()=>{if(!imageMotionAllowed.matches)for(const animation of imageAnimations)animation.cancel();});
